@@ -6,11 +6,6 @@
     top: 50px;
 }
 
-.others{
-    flex: 4;
-    background-color: darkcyan;
-}
-
 .sideBarWrapper{
     padding: 20px;
     color: #555;

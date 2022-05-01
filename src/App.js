@@ -1,16 +1,16 @@
 import Topbar from "./components/topbar/Topbar";
-import React  from 'react';
+import React from "react";
 import Sidebar from "./components/sidebar/Sidebar";
-import "./App.css"
-
+import "./App.css";
+import Home from "./pages/home/Home";
 
 function App() {
   return (
     <div className="App">
-      <Topbar></Topbar>  
+      <Topbar></Topbar>
       <div className="container">
-      <Sidebar/>
-      <div className="others">other pages</div>
+        <Sidebar />
+        <Home />
       </div>
     </div>
   );
