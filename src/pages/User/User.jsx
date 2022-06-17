@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./User.css";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
-import MailOutline from '@mui/icons-material/MailOutline';
-import PhoneAndroid from '@mui/icons-material/PhoneAndroid';
-import Publish from '@mui/icons-material/Publish';
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import LocationSearchingIcon from "@mui/icons-material/LocationSearching";
+import MailOutline from "@mui/icons-material/MailOutline";
+import PhoneAndroid from "@mui/icons-material/PhoneAndroid";
 import { Link } from "react-router-dom";
+import UpdateForm from "./UpdateForm";
+
 
 export default function User() {
+  const [initialValues, setInitialValues] = useState(null);
+
+  useEffect(() => {
+    setInitialValues(JSON.parse(localStorage.getItem("supplier")));
+    localStorage.setItem('oldImgUrl',initialValues && initialValues.supImgUrl)
+  });
+
+
+
   return (
     <div className="user">
       <div className="userTitleContainer">
@@ -21,20 +31,20 @@ export default function User() {
         <div className="userShow">
           <div className="userShowTop">
             <img
-              src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              src={`${initialValues && initialValues.supImgUrl}`}
               alt=""
               className="userShowImg"
             />
             <div className="userShowTopTitle">
-              <span className="userShowUsername">Anna Becker</span>
-              <span className="userShowUserTitle">Software Engineer</span>
+              <span className="userShowUsername">{initialValues && initialValues.supId}</span>
+              <span className="userShowUserTitle">{initialValues && initialValues.supName}</span>
             </div>
           </div>
           <div className="userShowBottom">
             <span className="userShowTitle">Account Details</span>
             <div className="userShowInfo">
               <PermIdentityIcon className="userShowIcon" />
-              <span className="userShowInfoTitle">annabeck99</span>
+              <span className="userShowInfoTitle">{initialValues && initialValues.supId}</span>
             </div>
             <div className="userShowInfo">
               <CalendarTodayIcon className="userShowIcon" />
@@ -43,7 +53,7 @@ export default function User() {
             <span className="userShowTitle">Contact Details</span>
             <div className="userShowInfo">
               <PhoneAndroid className="userShowIcon" />
-              <span className="userShowInfoTitle">+1 123 456 67</span>
+              <span className="userShowInfoTitle">{initialValues && initialValues.supTelephone}</span>
             </div>
             <div className="userShowInfo">
               <MailOutline className="userShowIcon" />
@@ -51,73 +61,16 @@ export default function User() {
             </div>
             <div className="userShowInfo">
               <LocationSearchingIcon className="userShowIcon" />
-              <span className="userShowInfoTitle">New York | USA</span>
+              <span className="userShowInfoTitle">{initialValues && initialValues.supAddress} | Sri Lanka</span>
             </div>
           </div>
         </div>
         <div className="userUpdate">
-          <span className="userUpdateTitle">Edit</span>
-          <form className="userUpdateForm">
-            <div className="userUpdateLeft">
-              <div className="userUpdateItem">
-                <label>Username</label>
-                <input
-                  type="text"
-                  placeholder="annabeck99"
-                  className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Full Name</label>
-                <input
-                  type="text"
-                  placeholder="Anna Becker"
-                  className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Email</label>
-                <input
-                  type="text"
-                  placeholder="annabeck99@gmail.com"
-                  className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Phone</label>
-                <input
-                  type="text"
-                  placeholder="+1 123 456 67"
-                  className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Address</label>
-                <input
-                  type="text"
-                  placeholder="New York | USA"
-                  className="userUpdateInput"
-                />
-              </div>
-            </div>
-            <div className="userUpdateRight">
-              <div className="userUpdateUpload">
-                <img
-                  className="userUpdateImg"
-                  src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                  alt=""
-                />
-                <label htmlFor="file">
-                  <Publish className="userUpdateIcon" />
-                </label>
-                <input type="file" id="file" style={{ display: "none" }} />
-              </div>
-              <button className="userUpdateButton">Update</button>
-            </div>
-          </form>
+          <UpdateForm
+            initialValues={initialValues && initialValues}
+          />
         </div>
       </div>
     </div>
   );
 }
-

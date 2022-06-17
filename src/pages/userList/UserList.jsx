@@ -11,6 +11,7 @@ export default class UserList extends Component {
     super(props);
     this.refreshSuppliers = this.refreshSuppliers.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
     this.state = {
       suppliers: [],
       message: null,
@@ -50,7 +51,7 @@ export default class UserList extends Component {
           return (
             <>
               <Link to={"/user/" + params.row.supId}>
-                <button className="userListEdit" onClick={()=>{localStorage.setItem(`${params.row.supId}`,JSON.stringify(params.row))}}>Edit</button>
+                <button className="userListEdit" onClick={()=>{this.handleUpdate(params.row)}}>Edit</button>
               </Link>
 
               <DeleteOutlineIcon
@@ -64,6 +65,10 @@ export default class UserList extends Component {
         },
       },
     ];
+  }
+
+  handleUpdate(Object){
+    localStorage.setItem('supplier',JSON.stringify(Object))
   }
 
   handleDelete(id) {
