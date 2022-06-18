@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import "./User.css";
 import * as Yup from "yup";
@@ -22,7 +22,6 @@ const updateSupplierSchema = Yup.object().shape({
 const UpdateForm = (props) => {
   const navigate = useNavigate();
 
-
   const updateSupplier = (supplier) => {
     supplier.supImgUrl =
       localStorage.getItem("uploadedImgUrl") != null
@@ -40,7 +39,9 @@ const UpdateForm = (props) => {
       });
       navigate("/users");
       localStorage.clear();
-    });
+    }).catch(()=>{
+      //ToDo:
+    })
   };
 
   return (

@@ -83,7 +83,11 @@ export default class UserList extends Component {
         backgroundBottom: "#90EE90",
       });
       this.refreshSuppliers();
-    });
+    }).catch(
+      () => {
+        //Todo:
+      }
+    )
   }
 
   componentDidMount() {
@@ -93,7 +97,9 @@ export default class UserList extends Component {
   refreshSuppliers() {
     SupplierDataService.retrieveAllSuppliers().then((Response) => {
       this.setState({ suppliers: Response.data });
-    });
+    }).catch(()=>{
+      //ToDo...
+    })
   }
   render() {
     const { suppliers } = this.state;

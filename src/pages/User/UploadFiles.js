@@ -49,6 +49,7 @@ export default class UploadFiles extends Component {
         localStorage.setItem("uploadedImgUrl", response.data.downloadUri);
       })
       .catch(() => {
+          //Todo:
         this.setState({
           progress: 0,
           message: "Could not upload the file!",

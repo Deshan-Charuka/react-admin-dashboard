@@ -59,10 +59,12 @@ export default function Sidebar() {
         <div className="sideBarMenu">
           <h3 className="sideBarTitle">Quick Menu</h3>
           <ul className="sideBarList">
-            <li className="sideBarListItem">
-              <LineStyleIcon className="sideBarIcon" />
-              Home
-            </li>
+          <Link to={"/orders"} className="sideBarLink">
+              <li className="sideBarListItem">
+                <LineStyleIcon className="sideBarIcon" />
+                Orders
+              </li>
+            </Link>
             <li className="sideBarListItem">
               <TimelineIcon className="sideBarIcon" />
               Analytics
